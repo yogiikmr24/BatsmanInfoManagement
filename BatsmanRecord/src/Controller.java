@@ -5,7 +5,7 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-//Owner Yogesh Kumar
+//Owner Yogesh Kumar.
 public class Controller {
 
     private static BatsmanView view;
