@@ -298,12 +298,17 @@ outTf.setText("");
     String name=nameTf.getText();
     int match=Integer.parseInt(matchTf.getText());
     int runs=Integer.parseInt(runsTf.getText());
+    int balls=Integer.parseInt(ballfaceTf.getText());
+    int outs=Integer.parseInt(outTf.getText());
+    double strike=control.calculateStrikeRate(runs, balls);
+    double average =control.calculateAverage(runs, outs);
     
     BatsmanInfo info = new BatsmanInfo();
     info.setName(name);
     info.setMatch(match);
     info.setRuns(runs);
-    
+    info.setStrikeRate(strike);
+    info.setAverage(average);
             
     control.updateData(info,sName);
     JOptionPane.showMessageDialog(this,"Your record has been updated.");
