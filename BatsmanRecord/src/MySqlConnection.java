@@ -39,7 +39,7 @@ public class MySqlConnection {
             stmt.setDouble(4,batsman.getStrikeRate());
             stmt.setDouble(5,batsman.getAverage());
             stmt.executeUpdate();
-            System.out.println("data inserted");
+           
         } catch (SQLException ex) {
             Logger.getLogger(MySqlConnection.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -52,7 +52,7 @@ public class MySqlConnection {
             PreparedStatement stmt=connection.prepareStatement(query);
             stmt.setString(1,name);
             stmt.executeUpdate();
-            connection.close();
+           
         } catch (SQLException ex) {
             Logger.getLogger(MySqlConnection.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 //Yogesh Kumar
@@ -239,21 +240,33 @@ outTf.setText("");
 }
     
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
+   int match=0;
+   int runs=0;
+   int balls=0;
+   int outs=0;
     String name=nameTf.getText();
-    int match=Integer.parseInt(matchTf.getText());
-    int runs=Integer.parseInt(runsTf.getText());
-    int balls = Integer.parseInt(ballfaceTf.getText());
-    int outs = Integer.parseInt(outTf.getText());
+    if(!matchTf.getText().isEmpty()){
+    match=Integer.parseInt(matchTf.getText());
+    }
+    if(!runsTf.getText().isEmpty()){
+    runs=Integer.parseInt(runsTf.getText());
+    }
+    if(!ballfaceTf.getText().isEmpty()){
+    balls=Integer.parseInt(ballfaceTf.getText());
+    }
+    if(!outTf.getText().isEmpty()){
+    outs=Integer.parseInt(outTf.getText());
+    }
     double strike=control.calculateStrikeRate(runs, balls);
     double average =control.calculateAverage(runs, outs);
     
-    if(!name.isEmpty() && match!=0 && runs!=0 && balls!=0){
-    BatsmanInfo info = new BatsmanInfo(name,match,runs,strike,average); 
+    if(!name.isEmpty() && match!=0 && runs!=0 && balls!=0 && outs!=0){
+   BatsmanInfo info = new BatsmanInfo(name,match,runs,strike,average); 
      control.saveData(info);
+     JOptionPane.showMessageDialog(this, "Record saved.");
      clearField();
-    }else
-     {
-     System.out.println("enter all fields");
+    }else{
+    JOptionPane.showMessageDialog(this, "please fill all fields");
     }
     }//GEN-LAST:event_saveBtnActionPerformed
 
@@ -272,10 +285,12 @@ outTf.setText("");
      String name =(searchTf.getText());
      if(!name.isEmpty()){
      control.deleteRecord(name);
+     JOptionPane.showMessageDialog(this,"Record deleted");
      clearField();
      }else{
-    System.out.println("please enter name for delete data");
+    JOptionPane.showMessageDialog(this,"Please enter batsman name!");
     }
+     
     }//GEN-LAST:event_deleteBtnActionPerformed
 
     private void UpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateBtnActionPerformed
@@ -286,11 +301,13 @@ outTf.setText("");
     
     BatsmanInfo info = new BatsmanInfo();
     info.setName(name);
-    info.getMatch();
+    info.setMatch(match);
     info.setRuns(runs);
     
             
     control.updateData(info,sName);
+    JOptionPane.showMessageDialog(this,"Your record has been updated.");
+  
     }//GEN-LAST:event_UpdateBtnActionPerformed
 
     private void ballfaceTfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ballfaceTfActionPerformed
