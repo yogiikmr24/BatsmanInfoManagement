@@ -275,8 +275,10 @@ outTf.setText("");
     ArrayList<BatsmanInfo> batsmanList=control.getRecord();
     for(int i=0;i<batsmanList.size();i++){
     BatsmanInfo info=batsmanList.get(i);
+   
     DefaultTableModel model = (DefaultTableModel) table.getModel();
     model.addRow(new Object[]{info.getName(), info.getMatch(), info.getRuns(),info.getStrikeRate(),info.getAverage()});
+    
     }
    
     }//GEN-LAST:event_showBtnActionPerformed
@@ -284,9 +286,13 @@ outTf.setText("");
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
      String name =(searchTf.getText());
      if(!name.isEmpty()){
-     control.deleteRecord(name);
+     int isDeleted = control.deleteRecord(name);
+     if(isDeleted>0){
      JOptionPane.showMessageDialog(this,"Record deleted");
      clearField();
+     }else{
+         JOptionPane.showMessageDialog(this,"Record not found !");
+     }
      }else{
     JOptionPane.showMessageDialog(this,"Please enter batsman name!");
     }
@@ -312,7 +318,7 @@ outTf.setText("");
             
     control.updateData(info,sName);
     JOptionPane.showMessageDialog(this,"Your record has been updated.");
-  
+ 
     }//GEN-LAST:event_UpdateBtnActionPerformed
 
     private void ballfaceTfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ballfaceTfActionPerformed

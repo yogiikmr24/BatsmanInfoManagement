@@ -35,8 +35,8 @@ public class Controller {
     }
     
 
-    public void deleteRecord(String name){
-       con.deleteRecord(name);
+    public int deleteRecord(String name){
+       return con.deleteRecord(name);
     }
     
     public void updateData(BatsmanInfo info,String sName){

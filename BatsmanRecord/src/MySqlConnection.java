@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 //Yogesh Kumar
 public class MySqlConnection {
@@ -46,15 +47,18 @@ public class MySqlConnection {
         return true;
   }
   
-  public void deleteRecord(String name){
+  public int deleteRecord(String name){
         try {
             String query="delete from "+TABLE_NAME+" where name=?";
             PreparedStatement stmt=connection.prepareStatement(query);
             stmt.setString(1,name);
-            stmt.executeUpdate();
+           
+            return stmt.executeUpdate();
+        
            
         } catch (SQLException ex) {
             Logger.getLogger(MySqlConnection.class.getName()).log(Level.SEVERE, null, ex);
+            return 0;
         }
   }
   public ArrayList<BatsmanInfo> getRecord() throws SQLException {
